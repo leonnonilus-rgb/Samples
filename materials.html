@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Business website</title>
+<meta name="theme-color" content="#0b2a4a">
+<style>
+:root{--brand:#0b2a4a;--accent:#f5b301;--ink:#14181c;--muted:#56616b;--line:#dde2e6;--soft:#f2f4f5;--wa:#25d366;--wa-ink:#052e1a}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;color:var(--ink);background:#fff}
+a{color:inherit}
+a:focus-visible{outline:3px solid var(--brand);outline-offset:3px}
+.hero a:focus-visible,.cta a:focus-visible{outline-color:#fff}
+.wrap{max-width:880px;margin:0 auto}
+
+.demo{background:#14181c;color:#fff;font-size:.875rem;text-align:center;padding:9px 16px}
+
+/* hero */
+.hero{position:relative;isolation:isolate;overflow:hidden;background:var(--brand);color:#fff;padding:56px 20px 84px}
+.hero-img,.hero-tint,.hero-pat{position:absolute;inset:0;z-index:-1}
+.hero-img{background-size:cover;background-position:center}
+.hero-tint{background:var(--brand);opacity:.84}
+h1{margin:0 0 14px;font-size:clamp(2.25rem,9.5vw,4.25rem);line-height:1.02;letter-spacing:-.03em;font-weight:800;overflow-wrap:break-word;text-wrap:balance}
+.tag{margin:0 0 28px;max-width:32ch;font-size:1.1875rem;line-height:1.45;color:rgba(255,255,255,.9)}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.btns .btn{flex:1 1 100%}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 22px;border-radius:12px;font-size:1rem;font-weight:700;text-decoration:none;border:2px solid transparent;cursor:pointer}
+.btn svg{flex:none}
+.btn-wa{background:var(--wa);color:var(--wa-ink)}
+.btn-line{border-color:rgba(255,255,255,.75);color:#fff}
+.btn-ink{background:var(--brand);color:#fff}
+.where{display:flex;align-items:center;gap:8px;margin:26px 0 0;color:rgba(255,255,255,.88);font-size:.9375rem}
+.band{position:absolute;left:0;right:0;bottom:0}
+.band.top{top:0;bottom:auto}
+
+/* sections */
+.sec{padding:52px 20px}
+.sec.alt{background:var(--soft)}
+h2{margin:0 0 8px;font-size:1.75rem;line-height:1.15;letter-spacing:-.02em;font-weight:800;text-wrap:balance}
+.sub{margin:0 0 22px;color:var(--muted)}
+
+/* price list */
+.rows{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.row{display:flex;align-items:center;gap:14px;padding:16px 6px;border-bottom:1px solid var(--line);text-decoration:none}
+.row:hover{background:var(--soft)}
+.row-main{flex:1;min-width:0}
+.row-name{display:block;font-weight:700}
+.row-desc{display:block;color:var(--muted);font-size:.9375rem}
+.row-price{font-weight:800;color:var(--brand);white-space:nowrap;font-variant-numeric:tabular-nums}
+.row::after{content:"";flex:none;width:8px;height:8px;border:solid #9aa5ad;border-width:2px 2px 0 0;transform:rotate(45deg)}
+
+/* about */
+.about{max-width:58ch;margin:0 0 28px;font-size:1.0625rem}
+.hl{display:grid;gap:20px}
+.hl-item{border-left:4px solid var(--accent);padding-left:16px}
+.hl-item b{display:block;font-size:1.0625rem}
+.hl-item span{color:var(--muted)}
+
+/* gallery */
+.gal{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.gal img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px;background:var(--soft)}
+.gal img:last-child:nth-child(odd){grid-column:1/-1;aspect-ratio:16/9}
+
+/* hours + location */
+.cols{display:grid;gap:40px}
+.hours{margin:0}
+.hours div{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--line)}
+.hours dt{font-weight:600}
+.hours dd{margin:0;color:var(--muted);text-align:right}
+.addr{margin:0 0 18px;font-size:1.0625rem}
+
+/* call to action */
+.cta{position:relative;overflow:hidden;background:var(--brand);color:#fff;padding:72px 20px 56px}
+.cta p{max-width:46ch}
+.cta .lead{margin:0 0 26px;color:rgba(255,255,255,.9);font-size:1.0625rem}
+.cta .small{margin:24px 0 0;color:rgba(255,255,255,.82);font-size:.9375rem}
+.links{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:14px}
+.links a{color:#fff;font-weight:600}
+
+.foot{background:#0d1013;color:#b3bcc3;font-size:.875rem;padding:22px 20px 98px}
+.foot .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 20px}
+
+/* sticky bar (phones) */
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:10;display:flex;gap:10px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid var(--line);box-shadow:0 -4px 16px rgba(0,0,0,.08)}
+.bar .btn{flex:1;padding:0 12px;min-height:50px}
+.bar .btn-line{border-color:var(--brand);color:var(--brand)}
+
+@media (min-width:520px){
+  .btns .btn{flex:0 0 auto}
+}
+@media (min-width:720px){
+  .cols{grid-template-columns:1fr 1fr;gap:56px}
+  .hl{grid-template-columns:repeat(3,1fr);gap:28px}
+  .gal{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+  .gal img:last-child:nth-child(odd){grid-column:auto;aspect-ratio:4/3}
+  .sec{padding:68px 20px}
+  .hero{padding:96px 20px 110px}
+}
+@media (min-width:820px){
+  .bar{display:none}
+  .foot{padding-bottom:22px}
+}
+</style>
+</head>
+<body>
+<div id="app"><noscript style="display:block;padding:24px;font-family:sans-serif">Please turn on JavaScript to see this page.</noscript></div>
+
+<script>
+/* ===== EDIT THIS PART FOR EACH BUSINESS (start) ===== */
+const SITE = {
+  "email": "",
+  "facebook": "",
+  "payments": "MTN Mobile Money, Airtel Money and cash",
+  "phone": "+260 76 0346121",
+  "countryCode": "260",
+  "heroImage": "",
+  "demo": true,
+  "demoText": "Sample page. Names, prices and photos are examples only.",
+  "mapLink": "https://www.google.com/maps/search/?api=1&query=Solwezi%2C+Zambia",
+  "madeBy": "Sample made in Solwezi. Want one for your business? WhatsApp 0760 346121",
+  "area": "Solwezi, Zambia",
+  "address": "Solwezi town centre (example address)",
+  "name": "Northern Haulage & Materials",
+  "tagline": "Tipper truck delivery of sand, gravel, stones and more, straight to your site.",
+  "waMessage": "Hello, I would like a delivery of building materials.",
+  "itemMessage": "Hello, I would like a price for a delivery of:",
+  "brand": "#3b2f1e",
+  "accent": "#f2a900",
+  "pattern": "stripes",
+  "servicesTitle": "What we deliver",
+  "services": [
+    {
+      "name": "Building sand",
+      "desc": "For laying blocks and bricks",
+      "price": "Ask for price"
+    },
+    {
+      "name": "Gravel",
+      "desc": "For concrete and foundations",
+      "price": "Ask for price"
+    },
+    {
+      "name": "Plaster sand",
+      "desc": "Fine sand for plastering walls",
+      "price": "Ask for price"
+    },
+    {
+      "name": "Black soil",
+      "desc": "For gardens and levelling",
+      "price": "Ask for price"
+    },
+    {
+      "name": "Sokawe stones",
+      "desc": "Delivered by the truckload",
+      "price": "Ask for price"
+    },
+    {
+      "name": "Cement",
+      "desc": "Order together with your sand and stones",
+      "price": "Ask for price"
+    }
+  ],
+  "aboutTitle": "How to order",
+  "about": "Message us what you need, how much, and where to deliver. We reply with a price and a delivery time.",
+  "highlights": [
+    {
+      "title": "Delivered to your site",
+      "text": "Our tipper trucks bring the load to you."
+    },
+    {
+      "title": "Order on WhatsApp",
+      "text": "Send your list and your location."
+    },
+    {
+      "title": "Price before delivery",
+      "text": "You agree the price before the truck comes."
+    }
+  ],
+  "galleryTitle": "Our trucks and materials",
+  "gallery": [
+    "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20300%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%233b2f1e%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2372695d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22400%22%20height%3D%22300%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Cpolygon%20points%3D%22108%2C92%20232%2C92%20232%2C182%20108%2C182%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.92%22%2F%3E%3Cpolygon%20points%3D%22238%2C118%20282%2C118%20298%2C150%20298%2C182%20238%2C182%22%20fill%3D%22%23ffffff%22%2F%3E%3Crect%20x%3D%22108%22%20y%3D%22150%22%20width%3D%22124%22%20height%3D%2210%22%20fill%3D%22%23f2a900%22%2F%3E%3Ccircle%20cx%3D%22150%22%20cy%3D%22190%22%20r%3D%2221%22%20fill%3D%22%23222%22%20stroke%3D%22%23fff%22%20stroke-width%3D%227%22%2F%3E%3Ccircle%20cx%3D%22262%22%20cy%3D%22190%22%20r%3D%2221%22%20fill%3D%22%23222%22%20stroke%3D%22%23fff%22%20stroke-width%3D%227%22%2F%3E%3Ctext%20x%3D%22200%22%20y%3D%22272%22%20text-anchor%3D%22middle%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2216%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.8%22%3EYour%20photo%20here%3C%2Ftext%3E%3C%2Fsvg%3E",
+    "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20300%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%233b2f1e%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2372695d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22400%22%20height%3D%22300%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Cpolygon%20points%3D%2295%2C205%20200%2C86%20305%2C205%22%20fill%3D%22%23f2a900%22%2F%3E%3Cpolygon%20points%3D%22225%2C205%20285%2C138%20345%2C205%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.9%22%2F%3E%3Crect%20x%3D%2280%22%20y%3D%22205%22%20width%3D%22280%22%20height%3D%228%22%20rx%3D%224%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.7%22%2F%3E%3Ctext%20x%3D%22200%22%20y%3D%22272%22%20text-anchor%3D%22middle%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2216%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.8%22%3EYour%20photo%20here%3C%2Ftext%3E%3C%2Fsvg%3E",
+    "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20300%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%233b2f1e%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2372695d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22400%22%20height%3D%22300%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Ccircle%20cx%3D%22150%22%20cy%3D%22180%22%20r%3D%2234%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.95%22%2F%3E%3Ccircle%20cx%3D%22218%22%20cy%3D%22170%22%20r%3D%2242%22%20fill%3D%22%23f2a900%22%2F%3E%3Ccircle%20cx%3D%22282%22%20cy%3D%22188%22%20r%3D%2226%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.85%22%2F%3E%3Ccircle%20cx%3D%22190%22%20cy%3D%22112%22%20r%3D%2224%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.7%22%2F%3E%3Ccircle%20cx%3D%22245%22%20cy%3D%22104%22%20r%3D%2216%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.9%22%2F%3E%3Ctext%20x%3D%22200%22%20y%3D%22272%22%20text-anchor%3D%22middle%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2216%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.8%22%3EYour%20photo%20here%3C%2Ftext%3E%3C%2Fsvg%3E",
+    "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20300%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%233b2f1e%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2372695d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%22400%22%20height%3D%22300%22%20fill%3D%22url%28%23g%29%22%2F%3E%3Crect%20x%3D%22140%22%20y%3D%2278%22%20width%3D%22120%22%20height%3D%22142%22%20rx%3D%2214%22%20fill%3D%22%23ffffff%22%2F%3E%3Crect%20x%3D%22140%22%20y%3D%22128%22%20width%3D%22120%22%20height%3D%2238%22%20fill%3D%22%23f2a900%22%2F%3E%3Ctext%20x%3D%22200%22%20y%3D%22272%22%20text-anchor%3D%22middle%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2216%22%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.8%22%3EYour%20photo%20here%3C%2Ftext%3E%3C%2Fsvg%3E"
+  ],
+  "hours": [
+    [
+      "Monday to Saturday",
+      "06:00 - 18:00"
+    ],
+    [
+      "Sunday",
+      "Closed"
+    ]
+  ],
+  "ctaTitle": "Need a delivery?",
+  "ctaText": "Send us what you need and where to bring it."
+};
+/* ===== EDIT THIS PART FOR EACH BUSINESS (end) ===== */
+
+(function () {
+  var S = SITE;
+  var esc = function (s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  };
+
+  /* phone number for links */
+  var digits = String(S.phone || "").replace(/\D/g, "");
+  if (digits.charAt(0) === "0") digits = String(S.countryCode || "260") + digits.slice(1);
+  var wa = function (msg) { return "https://wa.me/" + digits + "?text=" + encodeURIComponent(msg); };
+  var tel = "tel:+" + digits;
+
+  /* colours + page title */
+  var root = document.documentElement.style;
+  root.setProperty("--brand", S.brand || "#0b2a4a");
+  root.setProperty("--accent", S.accent || "#f5b301");
+  var theme = document.querySelector('meta[name="theme-color"]');
+  if (theme) theme.setAttribute("content", S.brand || "#0b2a4a");
+  document.title = S.name + (S.area ? " | " + S.area : "");
+
+  /* hero patterns, one per kind of trade */
+  var P = {
+    road: { bg: "none", h: 22,
+      band: "linear-gradient(90deg,var(--accent) 50%,transparent 50%) 0 50%/44px 3px repeat-x,linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,.4))" },
+    stripes: { bg: "repeating-linear-gradient(135deg,rgba(255,255,255,.05) 0 2px,transparent 2px 22px)", h: 14,
+      band: "repeating-linear-gradient(-45deg,var(--accent) 0 18px,#14181c 18px 36px)" },
+    dots: { bg: "radial-gradient(rgba(255,255,255,.14) 1.6px,transparent 1.7px) 0 0/22px 22px", h: 8,
+      band: "var(--accent)" },
+    checks: { bg: "conic-gradient(rgba(255,255,255,.035) 25%,transparent 0 50%,rgba(255,255,255,.035) 0 75%,transparent 0) 0 0/56px 56px", h: 20,
+      band: "conic-gradient(var(--accent) 25%,#fff 0 50%,var(--accent) 0 75%,#fff 0) 0 0/20px 20px" },
+    none: { bg: "none", h: 6, band: "var(--accent)" }
+  };
+  var pat = P[S.pattern] || P.none;
+
+  /* icons */
+  var iChat = '<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 3h16a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H9l-5 4v-4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg>';
+  var iPhone = '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.58a1 1 0 0 1-.25 1z"/></svg>';
+  var iPin = '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>';
+
+  var waBtn = function (label) {
+    return '<a class="btn btn-wa" href="' + esc(wa(S.waMessage || "Hello")) + '" target="_blank" rel="noopener">' + iChat + (label || "Chat on WhatsApp") + '</a>';
+  };
+  var callBtn = function () {
+    return '<a class="btn btn-line" href="' + esc(tel) + '">' + iPhone + 'Call ' + esc(S.phone) + '</a>';
+  };
+
+  /* hero */
+  var hero =
+    '<header class="hero">' +
+      (S.heroImage ? '<div class="hero-img" id="heroimg"></div><div class="hero-tint"></div>' : "") +
+      '<div class="hero-pat" style="background:' + pat.bg + '"></div>' +
+      '<div class="wrap">' +
+        '<h1>' + esc(S.name) + '</h1>' +
+        '<p class="tag">' + esc(S.tagline) + '</p>' +
+        '<div class="btns">' + waBtn() + callBtn() + '</div>' +
+        (S.area ? '<p class="where">' + iPin + esc(S.area) + '</p>' : "") +
+      '</div>' +
+      '<div class="band" style="height:' + pat.h + 'px;background:' + pat.band + '"></div>' +
+    '</header>';
+
+  /* sections (collected, then given alternating backgrounds) */
+  var secs = [];
+
+  var services = S.services || [];
+  if (services.length) {
+    var prefix = S.itemMessage || "Hello, I'm interested in:";
+    secs.push(
+      '<h2>' + esc(S.servicesTitle || "Our services") + '</h2>' +
+      '<p class="sub">Tap any item to ask about it on WhatsApp.</p>' +
+      '<ul class="rows">' + services.map(function (s) {
+        return '<li><a class="row" href="' + esc(wa(prefix + " " + s.name)) + '" target="_blank" rel="noopener">' +
+          '<span class="row-main"><span class="row-name">' + esc(s.name) + '</span>' +
+          (s.desc ? '<span class="row-desc">' + esc(s.desc) + '</span>' : "") + '</span>' +
+          (s.price ? '<span class="row-price">' + esc(s.price) + '</span>' : "") +
+        '</a></li>';
+      }).join("") + '</ul>'
+    );
+  }
+
+  var hls = S.highlights || [];
+  if (S.about || hls.length) {
+    secs.push(
+      '<h2>' + esc(S.aboutTitle || "About us") + '</h2>' +
+      (S.about ? '<p class="about">' + esc(S.about) + '</p>' : "") +
+      (hls.length ? '<div class="hl">' + hls.map(function (h) {
+        return '<div class="hl-item"><b>' + esc(h.title) + '</b><span>' + esc(h.text) + '</span></div>';
+      }).join("") + '</div>' : "")
+    );
+  }
+
+  var gal = S.gallery || [];
+  if (gal.length) {
+    secs.push(
+      '<h2>' + esc(S.galleryTitle || "Our work") + '</h2><div class="gal">' +
+      gal.map(function (src) {
+        return '<img src="' + esc(src) + '" alt="' + esc(S.name) + ' photo" loading="lazy" onerror="this.remove()">';
+      }).join("") + '</div>'
+    );
+  }
+
+  var hours = S.hours || [];
+  var mapHref = S.mapLink || (S.address ? "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(S.address) : "");
+  var left = hours.length
+    ? '<div><h2>Opening hours</h2><dl class="hours">' + hours.map(function (h) {
+        return '<div><dt>' + esc(h[0]) + '</dt><dd>' + esc(h[1]) + '</dd></div>';
+      }).join("") + '</dl></div>' : "";
+  var right = S.address
+    ? '<div><h2>Find us</h2><p class="addr">' + esc(S.address) + '</p>' +
+      '<a class="btn btn-ink" href="' + esc(mapHref) + '" target="_blank" rel="noopener">' + iPin + 'Open in Google Maps</a></div>' : "";
+  if (left || right) secs.push('<div class="cols">' + left + right + '</div>');
+
+  var body = secs.map(function (html, i) {
+    return '<section class="sec' + (i % 2 ? " alt" : "") + '"><div class="wrap">' + html + '</div></section>';
+  }).join("");
+
+  /* call to action + footer */
+  var cta =
+    '<section class="cta">' +
+      '<div class="band top" style="height:' + pat.h + 'px;background:' + pat.band + '"></div>' +
+      '<div class="wrap">' +
+        '<h2>' + esc(S.ctaTitle || "Get in touch") + '</h2>' +
+        (S.ctaText ? '<p class="lead">' + esc(S.ctaText) + '</p>' : "") +
+        '<div class="btns">' + waBtn() + callBtn() + '</div>' +
+        (S.payments ? '<p class="small">We accept ' + esc(S.payments) + '.</p>' : "") +
+        ((S.email || S.facebook) ? '<div class="links">' +
+          (S.email ? '<a href="mailto:' + esc(S.email) + '">' + esc(S.email) + '</a>' : "") +
+          (S.facebook ? '<a href="' + esc(S.facebook) + '" target="_blank" rel="noopener">Facebook page</a>' : "") +
+        '</div>' : "") +
+      '</div>' +
+    '</section>';
+
+  var foot =
+    '<footer class="foot"><div class="wrap"><span>&copy; ' + new Date().getFullYear() + ' ' + esc(S.name) + '</span>' +
+    (S.madeBy ? '<span>' + esc(S.madeBy) + '</span>' : "") + '</div></footer>';
+
+  var bar =
+    '<nav class="bar" aria-label="Contact">' + waBtn("WhatsApp") +
+    '<a class="btn btn-line" href="' + esc(tel) + '">' + iPhone + 'Call now</a></nav>';
+
+  var demo = S.demo ? '<div class="demo">' + esc(S.demoText || "Sample website. Your business name, prices and photos go here.") + '</div>' : "";
+
+  document.getElementById("app").innerHTML = demo + hero + body + cta + foot + bar;
+
+  if (S.heroImage) {
+    var h = document.getElementById("heroimg");
+    if (h) h.style.backgroundImage = 'url("' + encodeURI(S.heroImage) + '")';
+  }
+})();
+</script>
+</body>
+</html>
